@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eseedge.version: "1.0"
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: sql
+  name: sql
+  namespace: eseedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.eseedge.service: sql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        eseedge.version: "1.0"
+      creationTimestamp: null
+      labels:
+        io.eseedge.network/esenetwork: "true"
+        io.eseedge.service: sql
+    spec:
+      containers:
+      - name: sql
+        image: eseregistryedge.azurecr.io/eseedge/sql:ese
+        env:
+        - name: ACCEPT_EULA
+          valueFrom:
+            configMapKeyRef:
+              name: sql-config
+              key: ACCEPT_EULA
+        - name: MSSQL_PID
+          valueFrom:
+            configMapKeyRef:
+              name: sql-config
+              key: MSSQL_PID
+        - name: MSSQL_AGENT_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: sql-config
+              key: MSSQL_AGENT_ENABLED
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sql-secret
+              key: password
+        imagePullPolicy: ""
+        ports:
+        - containerPort: 1433
+        resources:
+          limits:
+            memory: 2Gi
+            ephemeral-storage: 100Mi
+          requests:
+            memory: 2Gi
+            ephemeral-storage: 100Mi
+        volumeMounts:
+        - mountPath: /var/opt/mssql/data
+          name: sqlvolume
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: sqlvolume
+        persistentVolumeClaim:
+          claimName: sqlvolume
+status: {}

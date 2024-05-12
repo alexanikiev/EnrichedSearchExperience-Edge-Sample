@@ -1,0 +1,48 @@
+# Infrastructure pipeline
+# Tasks 1, 2, 3 and 4: Install, init, plan and apply terraform to deploy the infrastructure
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - ../terraform_ase/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: TerraformInstaller@0
+  displayName: 'Install terraform'
+  inputs:
+    terraformVersion: '0.12.29'
+
+- task: TerraformTaskV1@0
+  displayName: 'Init terraform'
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/../terraform_ase'
+    backendServiceArm: 'ese-tf'
+    backendAzureRmResourceGroupName: 'ese-tf'
+    backendAzureRmStorageAccountName: 'esetfstorage'
+    backendAzureRmContainerName: 'default'
+    backendAzureRmKey: 'default/terraform.tfstate'
+
+- task: TerraformTaskV1@0
+  displayName: 'Plan terraform'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/../terraform_ase'
+    environmentServiceNameAzureRM: 'ese-tf'
+
+- task: TerraformTaskV1@0
+  displayName: 'Apply terraform'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/../terraform_ase'
+    environmentServiceNameAzureRM: 'ese-tf'

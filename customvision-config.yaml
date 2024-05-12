@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customvision-config
+  namespace: eseedge
+data:
+  log_level: INFO

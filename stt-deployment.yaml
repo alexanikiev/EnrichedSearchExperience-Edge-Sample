@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eseedge.version: 1.0 (edge)
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: stt
+  name: stt
+  namespace: ese
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.eseedge.service: stt
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        eseedge.version: 1.0 (edge)
+      creationTimestamp: null
+      labels:
+        io.eseedge.network/esenetwork: "true"
+        io.eseedge.service: stt
+    spec:
+      containers:
+      - name: stt
+        image: mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text:latest
+        env:
+        - name: Eula
+          valueFrom:
+            configMapKeyRef:
+              name: stt-config
+              key: Eula
+        - name: Billing
+          valueFrom:
+            configMapKeyRef:
+              name: stt-config
+              key: Billing
+        - name: ApiKey
+          valueFrom:
+            secretKeyRef:
+              name: stt-secret
+              key: apikey
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            cpu: 4
+            memory: 4Gi
+            ephemeral-storage: 100Mi
+          requests:
+            cpu: 4
+            memory: 4Gi
+            ephemeral-storage: 100Mi
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

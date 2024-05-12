@@ -1,0 +1,11 @@
+export const info = [
+    { name: "trump", description: "Donald John Trump is the 45th and current president of the United States. Before entering politics, he was a businessman and television personality." },
+    { name: "who", description: "The World Health Organization is a specialized agency of the United Nations responsible for international public health. The WHO Constitution, which establishes the agency's governing structure and principles, states its main objective as \"the attainment by all peoples of the highest possible level of health.\"" },
+    { name: "ebola", description: "A virus that causes severe bleeding, organ failure, and can lead to death. Humans may spread the virus to other humans through contact with bodily fluids such as blood. Initial symptoms include fever, headache, muscle pain, and chills. Later, a person may experience internal bleeding resulting in vomiting or coughing blood. Treatment is supportive hospital care." },
+    { name: "liberia", description: "Liberia is a country in West Africa, bordering Sierra Leone, Guinea and Côte d'Ivoire. On the Atlantic coast, the capital city of Monrovia is home to the Liberia National Museum, with its exhibits on national culture and history." },
+    { name: "biden", description: "Joseph Robinette Biden Jr. is an American politician and the president-elect of the United States. Having defeated incumbent Donald Trump in the 2020 United States presidential election, he will be inaugurated as the 46th president on January 20, 2021." },
+    { name: "an outbreak", description: "A dangerous airborne virus threatens civilization in this tense thriller. After an African monkey carrying a lethal virus is smuggled into the U.S., an outbreak occurs in a California town." },
+    { name: "doctors", description: "A a person licensed to practice medicine, as a physician, surgeon, dentist, or veterinarian. a person who has been awarded a doctor's degree." },
+    { name: "sierra leone", description: "Sierra Leone is a country in West Africa, on the Atlantic Ocean. It’s known for the white-sand beaches lining the Freetown Peninsula. The capital city, Freetown, commemorates the nation’s slave-trade history with the Cotton Tree landmark and King’s Yard Gate." }
+];
+

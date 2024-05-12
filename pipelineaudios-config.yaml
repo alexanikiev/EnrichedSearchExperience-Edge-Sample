@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pipelineaudios-config
+  namespace: eseedge
+data:
+  log_level: INFO

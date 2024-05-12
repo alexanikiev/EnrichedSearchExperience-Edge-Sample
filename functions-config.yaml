@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: functions-config
+  namespace: eseedge
+data:
+  AzureWebJobsScriptRoot: /home/site/wwwroot
+  AzureFunctionsJobHost__Logging__Console__IsEnabled: "true"
+  AzureWebJobsStorage: DefaultEndpointsProtocol=https;AccountName=esevulcanstorage;AccountKey=4l95SM5WMUKgQ5exQoCcrV/iL5AWkqmMxNsX2VVMyslCkdaAYKb/Bmuev+hKxI58KvnV/lL60WldTQmdBx0Qow==;EndpointSuffix=core.windows.net
+  DefaultEndpointsProtocol: https
+  AccountName: esevulcanstorage
+  EndpointSuffix: core.windows.net
+  log_level: INFO

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    eseedge.version: "1.0"
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: kibana
+  name: kibana
+  namespace: eseedge
+spec:
+  type: NodePort
+  ports:
+  - name: "9994"
+    port: 9994
+    targetPort: 5601
+    nodePort: 30994
+  selector:
+    io.eseedge.service: kibana
+status:
+  loadBalancer: {}

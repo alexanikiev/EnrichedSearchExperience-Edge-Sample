@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eseedge.version: 1.0 (edge)
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: translator1
+  name: translator1
+  namespace: eseedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.eseedge.service: translator1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        eseedge.version: 1.0 (edge)
+      creationTimestamp: null
+      labels:
+        io.eseedge.network/esenetwork: "true"
+        io.eseedge.service: translator1
+    spec:
+      containers:
+      - name: translator1
+        image: eseregistryedge.azurecr.io/eseedge/translator1:ese
+        env:
+        - name: Eula
+          valueFrom:
+            configMapKeyRef:
+              name: translator1-config
+              key: Eula
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            cpu: 4
+            memory: 8Gi
+            ephemeral-storage: 100Mi
+          requests:
+            cpu: 4
+            memory: 8Gi
+            ephemeral-storage: 100Mi
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

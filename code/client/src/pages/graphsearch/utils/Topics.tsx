@@ -1,0 +1,1 @@
+export const topics  = [ "ebola", "infection", "disease", "illness", "virus", "patient", "hospital" ];

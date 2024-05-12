@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eseedge.version: "1.0"
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: gremlinserver
+  name: gremlinserver
+  namespace: eseedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.eseedge.service: gremlinserver
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        eseedge.version: "1.0"
+      creationTimestamp: null
+      labels:
+        io.eseedge.network/esenetwork: "true"
+        io.eseedge.service: gremlinserver
+    spec:
+      containers:
+      - name: gremlinserver
+        image: eseregistryedge.azurecr.io/eseedge/gremlinserver:ese
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8182
+        resources:
+          limits:
+            memory: 2Gi
+            ephemeral-storage: 100Mi
+          requests:
+            memory: 2Gi
+            ephemeral-storage: 100Mi
+        volumeMounts:
+        - name: gremlinservervolume
+          mountPath: /opt/gremlin-server/volume
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: gremlinservervolume
+        hostPath:
+          path: /tmp/gremlinserver
+status: {}

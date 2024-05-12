@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    eseedge.version: 1.0 (edge)
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: stt
+  name: stt
+  namespace: ese
+spec:
+  type: NodePort
+  ports:
+  - name: "9968"
+    port: 9968
+    targetPort: 5000
+    nodePort: 30968
+  selector:
+    io.eseedge.service: stt
+status:
+  loadBalancer: {}

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: stanfordcorenlp-config
+  namespace: eseedge
+data:
+  JAVA_OPTS: -Xms6144m -Xmx 6144m
+  JAVA_XMX: 4g
+  TIMEOUT: "25000"
+  log_level: INFO

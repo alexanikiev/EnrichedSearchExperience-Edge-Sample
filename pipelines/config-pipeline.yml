@@ -1,0 +1,28 @@
+# Config pipeline
+# Task 1: Add Azure Stack Edge shares 
+
+variables:
+  NAME: 'esease'
+  ENVIRONMENT: 'dev'
+  MGMTAPIVERSION: '2020-09-01'
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - ../pipelines/*
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+- task: AzureCLI@2
+  displayName: 'Add Azure Stack Edge shares'
+  inputs:
+    azureSubscription: 'ese-tf'
+    scriptType: 'ps'
+    scriptLocation: 'scriptPath'
+    scriptPath: './config.ps1'

@@ -1,0 +1,6 @@
+[ { "id": "answer1", "name": "Health facilities & PPE (Personal protective equipment)", "description": "answer1", "notes": "answer1", "tags": [], "hierarchies": [],
+    "category": "Insight", "classification": "Default", "type": "Default" },
+  { "id": "answer2", "name": "Outbreak epicenter and origins", "description": "answer2", "notes": "answer2", "tags": [], "hierarchies": [],
+    "category": "Insight", "classification": "Default", "type": "Default" },
+  { "id": "answer3", "name": "Organizations responding to the outbreak", "description": "answer3", "notes": "answer3", "tags": [], "hierarchies": [],
+    "category": "Insight", "classification": "Default", "type": "Default" } ]

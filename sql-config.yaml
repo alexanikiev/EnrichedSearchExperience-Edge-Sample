@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sql-config
+  namespace: eseedge
+data:
+  ACCEPT_EULA: "Y"
+  MSSQL_PID: Express
+  MSSQL_AGENT_ENABLED: "true"
+  log_level: INFO

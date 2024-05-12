@@ -1,0 +1,15 @@
+parameters:
+- name: microservices
+  type: object
+  default: {}
+steps:
+- ${{ each microservice in parameters.microservices }}:
+  - task: Docker@2
+    displayName: Build and push ${{ microservice }} image to container registry
+    inputs:
+      command: buildAndPush
+      repository: $(IMAGEREPOSITORY)/${{ microservice }}
+      dockerfile: ../code/${{ microservice }}/Dockerfile
+      containerRegistry: $(DOCKERREGISTRYSERVICECONNECTION)
+      tags: |
+        $(TAG)

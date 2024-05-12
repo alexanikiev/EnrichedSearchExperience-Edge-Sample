@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    eseedge.version: 1.0 (edge)
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: translator1
+  name: translator1
+  namespace: eseedge
+spec:
+  type: NodePort
+  ports:
+  - name: "9951"
+    port: 9951
+    targetPort: 5000
+    nodePort: 30951
+  selector:
+    io.eseedge.service: translator1
+status:
+  loadBalancer: {}

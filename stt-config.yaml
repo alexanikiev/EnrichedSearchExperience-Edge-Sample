@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: stt-config
+  namespace: eseedge
+data:
+  Eula: accept
+  Billing: "https://eastus.api.cognitive.microsoft.com"
+  log_level: INFO

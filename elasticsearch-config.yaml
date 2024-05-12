@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elasticsearch-config
+  namespace: eseedge
+data:
+  cluster_initial_master_nodes: elasticsearch
+  cluster_name: elasticsearch-docker-cluster
+  node_name: elasticsearch
+  ES_JAVA_OPTS: ""
+  log_level: INFO

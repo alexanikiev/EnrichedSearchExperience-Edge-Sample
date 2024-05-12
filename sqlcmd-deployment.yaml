@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eseedge.version: "1.0"
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: sqlcmd
+  name: sqlcmd
+  namespace: eseedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.eseedge.service: sqlcmd
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        eseedge.version: "1.0"
+      creationTimestamp: null
+      labels:
+        io.eseedge.network/esenetwork: "true"      
+        io.eseedge.service: sqlcmd
+    spec:
+      containers:
+      - name: sqlcmd
+        image: eseregistryedge.azurecr.io/eseedge/sqlcmd:ese
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 1Gi
+            ephemeral-storage: 100Mi
+          requests:
+            memory: 1Gi
+            ephemeral-storage: 100Mi
+        tty: true
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

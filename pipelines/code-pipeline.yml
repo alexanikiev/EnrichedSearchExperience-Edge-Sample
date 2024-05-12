@@ -1,0 +1,51 @@
+# Code pipeline
+# Task 1: Set microservices secrets in key vault using Azure CLI
+# Task 2: Retrieve key vault secret(s)
+# Tasks 3 ...: Build and push images to a container registry  
+
+variables:
+  NAME: 'esease'
+  ENVIRONMENT: 'dev'
+  IMAGEREPOSITORY: 'eseedge'
+  DOCKERREGISTRYSERVICECONNECTION: 'eseaseacr'
+  TAG: 'ese'
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - ../code/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: AzureKeyVault@1
+  displayName: 'Retrieve secrets'
+  inputs:
+    azureSubscription: 'ese-tf'
+    KeyVaultName: 'eseasekeyvault'
+    SecretsFilter: '*'
+    RunAsPreJob: false
+
+- task: Docker@2
+  displayName: Login to ACR
+  inputs:
+    command: login
+    containerRegistry: $(DOCKERREGISTRYSERVICECONNECTION)
+
+- template: code-pipeline-template.yml
+  parameters:
+    microservices:
+    - tika
+    - client
+    - server
+
+- task: Docker@2
+  displayName: Logout of ACR
+  inputs:
+    command: logout
+    containerRegistry: $(DOCKERREGISTRYSERVICECONNECTION)

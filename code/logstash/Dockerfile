@@ -1,0 +1,3 @@
+FROM logstash
+
+EXPOSE 5000

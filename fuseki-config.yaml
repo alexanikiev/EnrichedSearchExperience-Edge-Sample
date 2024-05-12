@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fuseki-config
+  namespace: eseedge
+data:
+  JVM_ARGS: -Xmx2g
+  FUSEKI_DATASET_1: ese
+  log_level: INFO

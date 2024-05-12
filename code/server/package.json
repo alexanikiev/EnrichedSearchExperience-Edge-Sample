@@ -1,0 +1,35 @@
+{
+  "name": "pipeline",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.6.1",
+    "axios": "^0.19.2",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-fileupload": "^1.1.6",
+    "form-data": "^3.0.0",
+    "fs": "0.0.1-security",
+    "fs-extra": "^9.0.0",
+    "gremlin": "^3.4.6",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.13.0",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.6",
+    "morgan": "~1.9.1",
+    "mssql": "^6.2.0",
+    "os": "^0.1.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "swagger-jsdoc": "^5.0.1",
+    "swagger-ui-express": "^4.1.5",
+    "uuid": "^7.0.2"
+  }
+}

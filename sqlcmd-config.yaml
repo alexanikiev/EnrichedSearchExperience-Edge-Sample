@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sqlcmd-config
+  namespace: eseedge
+data:
+  log_level: INFO

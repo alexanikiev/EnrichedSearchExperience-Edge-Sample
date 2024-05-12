@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eseedge.version: "1.0"
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: server
+  name: server
+  namespace: eseedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.eseedge.service: server
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        eseedge.version: "1.0"
+      creationTimestamp: null
+      labels:
+        io.eseedge.network/esenetwork: "true"
+        io.eseedge.service: server
+    spec:
+      containers:
+      - name: server
+        image: eseregistryedge.azurecr.io/eseedge/server:ese
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            memory: 1Gi
+            ephemeral-storage: 100Mi
+          requests:
+            memory: 1Gi
+            ephemeral-storage: 100Mi
+        volumeMounts:
+        - mountPath: /usr/data
+          name: servervolume
+          subPath: data
+        - mountPath: /usr/src/app/public/media
+          name: servervolume
+          subPath: media          
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: servervolume
+        persistentVolumeClaim:
+          claimName: servervolume
+status: {}

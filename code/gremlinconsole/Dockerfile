@@ -1,0 +1,1 @@
+FROM tinkerpop/gremlin-console

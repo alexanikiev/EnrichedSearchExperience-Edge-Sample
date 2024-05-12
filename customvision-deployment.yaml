@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    eseedge.version: "1.0"
+  creationTimestamp: null
+  labels:
+    io.eseedge.service: customvision
+  name: customvision
+  namespace: eseedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.eseedge.service: customvision
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        eseedge.version: "1.0"
+      creationTimestamp: null
+      labels:
+        io.eseedge.service: customvision
+    spec:
+      containers:
+      - name: customvision
+        image: eseregistryedge.azurecr.io/eseedge/customvision:ese
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 1Gi
+            ephemeral-storage: 100Mi
+          requests:
+            memory: 1Gi
+            ephemeral-storage: 100Mi
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10 
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

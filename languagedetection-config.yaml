@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: languagedetection-config
+  namespace: eseedge
+data:
+  Eula: accept
+  Billing: https://eseedge.cognitiveservices.azure.com/
+  log_level: INFO
