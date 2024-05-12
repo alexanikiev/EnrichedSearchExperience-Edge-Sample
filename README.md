@@ -10,7 +10,7 @@ Please review the following Medium articles for details about the design and imp
 4. Building Kubernetes Applications for Azure Stack Edge Mini: https://medium.com/@alexanikiev/building-kubernetes-applications-for-azure-stack-edge-mini-2726978708b4
 5. Building AI Application for Azure Cloud: https://medium.com/@alexanikiev/building-ai-applications-for-azure-cloud-65252b602042
 
-Please watch a similar demo video here: https://learn.microsoft.com/en-us/shows/it-ops-talk/knowledge-mining-on-azure-stack-edge
+Please watch a similar demo video [here](https://learn.microsoft.com/en-us/shows/it-ops-talk/knowledge-mining-on-azure-stack-edge) and read more about it [here](https://alexanikiev.medium.com/building-kubernetes-applications-for-azure-stack-edge-be01666831e7)
 
 <a href="https://learn.microsoft.com/en-us/shows/it-ops-talk/knowledge-mining-on-azure-stack-edge" target="_blank"><img src="https://learn.microsoft.com/video/media/607ed043-222f-4d0f-b316-2f89299a2433/azurestackedge_960.jpg" alt="Knowledge Mining on Azure Stack Edge" width="560" height="315" border="10" /></a>
 
